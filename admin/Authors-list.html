@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  
-    <title>Employees list | Admin Dashboard </title>
+    <title>Aouthors list | Admin Dashboard </title>
   <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
 
   <body
@@ -274,9 +274,9 @@
                 <li>
                   <a
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                    href="Employees-list.html"
+                    href="Aouthors-list.html"
                     :class="page === 'formElements' && '!text-white'"
-                    >Employees</a
+                    >Aouthors</a
                   >
                 </li>
                 <li>
@@ -290,7 +290,7 @@
                 <li>
                   <a
                     class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white dark:hover:bg-meta-4"
-                    href="Employees-requastes-list.html"
+                    href="Aouthors-requastes-list.html"
                     @click="selected = (selected === 'Tables' ? '':'Tables')"
                     :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') && (page === 'tables') }"
                   >
@@ -867,7 +867,7 @@
               class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
             >
               <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                Employees list
+                Aouthors list
               </h2>
 
               <nav>
@@ -875,7 +875,7 @@
                   <li>
                     <a class="font-medium" href="dashboard.html">Dashboard /</a>
                   </li>
-                  <li class="font-medium text-primary">Employees list</li>
+                  <li class="font-medium text-primary">Aouthors list</li>
                 </ol>
               </nav>
             </div>
@@ -942,171 +942,33 @@
   <table class="w-full table-auto">
     <thead>
       <tr class="bg-gray-2 text-left dark:bg-meta-4">
-        <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
-          FULL NAME
+        <th class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+          FIRST NAME
         </th>
         <th class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-          REFERENCE
+          LAST NAME
         </th>
         <th class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-          Phone
+          AGE
         </th>
         <th class="px-4 py-4 font-medium text-black dark:text-white">
-          DEPARTMENT
+          COUNTRY
         </th>
-        <th class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-          JOINING DATE
+        <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white">
+          EMAIL
         </th>
-        <th class="px-4 py-4 font-medium text-black dark:text-white">
-          JOB
+        <th>
+          <button onclick="showauthor()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20px" height="20px" viewBox="0 0 24 24">
+              <path
+                d="M1,12A11,11,0,0,1,17.882,2.7l1.411-1.41A1,1,0,0,1,21,2V6a1,1,0,0,1-1,1H16a1,1,0,0,1-.707-1.707l1.128-1.128A8.994,8.994,0,0,0,3,12a1,1,0,0,1-2,0Zm21-1a1,1,0,0,0-1,1,9.01,9.01,0,0,1-9,9,8.9,8.9,0,0,1-4.42-1.166l1.127-1.127A1,1,0,0,0,8,17H4a1,1,0,0,0-1,1v4a1,1,0,0,0,.617.924A.987.987,0,0,0,4,23a1,1,0,0,0,.707-.293L6.118,21.3A10.891,10.891,0,0,0,12,23,11.013,11.013,0,0,0,23,12,1,1,0,0,0,22,11Z" />
+            </svg>
+          </button>
         </th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">chaker necibi</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">782428757782892</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21654879
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">Operations</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">12/12/2023</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Manager</p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">mohamed ben amar</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">8923482348234</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21987432
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">Customer Service</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">01/01/2024</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Engineer</p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">amina brahim</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">9823749872398</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21348723
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">Sales</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">05/03/2024</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Technician</p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">salah khemissi</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">8237482398472</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21783924
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">Marketing</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">22/05/2024</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Analyst</p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">noura badis</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">7482394872384</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21837423
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">Human Resources</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">15/08/2024</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Developer</p>
-        </td>
-      </tr>
-  
-      <tr>
-        <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
-          <h5 class="font-medium text-black dark:text-white">abdelhakim bensaid</h5>
-          <p class="text-sm"></p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">3482389478234</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium text-primary">
-            21784932
-          </p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">IT (Information Technology)</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="text-black dark:text-white">20/09/2024</p>
-        </td>
-        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
-          <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">Consultant</p>
-        </td>
-      </tr>
-  
+    <tbody id="authorsTable">
+
     </tbody>
   </table>
 </div>  
@@ -1134,67 +996,56 @@
             <label
               class="mb-3 block text-sm font-medium text-black dark:text-white"
             >
-              Full Name
+              First Name
             </label>
             <input
               type="text"
-              placeholder="Enter your full name"
+              placeholder="Enter your first name"
               class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-            />
+              id="Fname"
+              />
           </div>
-  
+
           <div>
             <label
               class="mb-3 block text-sm font-medium text-black dark:text-white"
             >
-            Refrence
+              Last Name
             </label>
             <input
               type="text"
-              placeholder="Refrence (Auto)"
-              disabled=""
-              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
-            />
+              placeholder="Enter your last name"
+              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+              id="Lname"
+              />
           </div>
-  
-          <div>
-            <label
-              class="mb-3 block text-sm font-medium text-black dark:text-white"
-            >
-              Phone
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the phone number"
-              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
-            />
-            </div>
   
             <div>
               <label
                 class="mb-3 block text-sm font-medium text-black dark:text-white"
               >
-                Address
+                age
               </label>
               <input
-                type="text"
-                placeholder="Enter the address"
+                type="number"
+                placeholder="age"
                   class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
-              />
+                  id="age"
+                  />
               </div>
   
-              <div>
-                <label
-                  class="mb-3 block text-sm font-medium text-black dark:text-white"
-                >
-                  Add as:
-                </label>
-                <select
-                  class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                >
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
+                <div>
+                  <label
+                    class="mb-3 block text-sm font-medium text-black dark:text-white"
+                  >
+                    Country
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Cuontry"
+                    class="w-full rounded-lg border-[1.5px] border-primary bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
+                    id="country"
+                     />
                 </div>
   
                 <div>
@@ -1204,31 +1055,19 @@
                     Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     class="w-full rounded-lg border-[1.5px] border-primary bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
-                  />
-                </div>
-  
-                <div>
-                  <label
-                    class="mb-3 block text-sm font-medium text-black dark:text-white"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    class="w-full rounded-lg border-[1.5px] border-primary bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:bg-form-input dark:text-white"
-                  />
+                    id="email"
+                    />
                 </div>
         </div>
       </div>
       <div class="flex justify-end p-6.5">
         <button
           class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-          type="submit"
-        >
+          onclick="submitauthor()"
+          >
           Add
         </button>
         </div>
@@ -1242,5 +1081,5 @@
     <!-- ===== Page Wrapper End ===== -->
   <script defer src="bundle.js"></script></body>
   <script src="src/js/script.js" ></script>
-  <script src="../assets/js/script.js" ></script>
+  <script src="/assets/js/script.js" ></script>
 </html>
