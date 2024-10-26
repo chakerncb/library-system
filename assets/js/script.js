@@ -35,7 +35,11 @@ const author2 = new author(
   "algeria"
 );
 authors.push(author2);
+var authrsCount = 1;
+var bookCount = 1;
 
+booksnumber();
+authorsnumber();
 function submitauthor() {
   const name = document.getElementById("Fname").value;
   const lname = document.getElementById("Lname").value;
@@ -45,6 +49,7 @@ function submitauthor() {
 
   const author1 = new author(name, lname, email, age, country);
   authors.push(author1);
+  authrsCount++;
   showauthor();
 }
 
@@ -68,7 +73,6 @@ function showauthor() {
 const books = [];
 const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5);
 books.push(book1);
-
 function submitbook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("authors-select").value;
@@ -77,7 +81,7 @@ function submitbook() {
 
   const book1 = new book(title, author, price, rating);
   books.push(book1);
-
+  bookCount++;
   showbook();
 }
 
@@ -115,6 +119,16 @@ function showbook() {
   tbody.innerHTML = data;
 }
 
+function booksnumber() {
+  const booksid = document.getElementById("b-number");
+  booksid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${bookCount}</h4>`;
+}
+
+function authorsnumber() {
+  const authorsid = document.getElementById("a-number");
+  authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${authrsCount}</h4>`;
+}
+
 const authorSelect = document.getElementById("authors-select");
 authors.forEach((authors) => {
   const option = document.createElement("option");
@@ -124,14 +138,13 @@ authors.forEach((authors) => {
 });
 
 function borrowBook(id) {
-    let i = id-1; 
+  let i = id - 1;
   books[i].itavailable = false;
   showbook();
 }
 
 function returnBook(id) {
-    let i = id-1;
+  let i = id - 1;
   books[i].itavailable = true;
   showbook();
 }
-
