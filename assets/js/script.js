@@ -68,6 +68,7 @@ function showauthor() {
                 </tr>`;
   });
   tbody.innerHTML = data;
+  authorsnumber();
 }
 
 const books = [];
@@ -83,6 +84,7 @@ function submitbook() {
   books.push(book1);
   bookCount++;
   showbook();
+  
 }
 
 function showbook() {
@@ -117,6 +119,7 @@ function showbook() {
                                     </tr>`;
   });
   tbody.innerHTML = data;
+  booksnumber();
 }
 
 function booksnumber() {
