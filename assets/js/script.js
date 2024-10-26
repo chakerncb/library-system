@@ -6,10 +6,6 @@ class author {
     this.age = age;
     this.country = country;
   }
-
-  getBio() {
-    return ` ${this.name} ${this.lname} is ${this.age} years old. He lives in ${this.country}`;
-  }
 }
 
 class book {
@@ -20,26 +16,26 @@ class book {
     this.rating = rating;
     this.itavailable = true;
   }
-
-  getSummary() {
-    return `${this.title} was written by ${this.author} and has a rating of ${this.rating}`;
-  }
 }
 
-const authors = [];
-const author2 = new author(
-  "chaker",
-  "necibi",
-  "chaker@gmail.com",
-  19,
-  "algeria"
-);
-authors.push(author2);
-var authrsCount = 1;
-var bookCount = 1;
+let authors = [];
+const books = [];
+const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5);
+books.push(book1);
+/////////////////////////////  authors  ///////////////////////////////
+let authrsCount = 1;
 
-booksnumber();
+const author2 = new author("chaker", "necibi", "chaker@gmail.com", 19, "algeria");
+authors.push(author2);
+showauthor();
 authorsnumber();
+
+function authorsnumber() {
+  let a_Count = authors.length;
+  const authorsid = document.getElementById("a-number");
+  authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${a_Count}</h4>`;
+}
+
 function submitauthor() {
   const name = document.getElementById("Fname").value;
   const lname = document.getElementById("Lname").value;
@@ -53,27 +49,31 @@ function submitauthor() {
   showauthor();
 }
 
-// show the authors as a table in the html
+
 function showauthor() {
   let tbody = document.getElementById("authorsTable");
   let data = "";
-  authors.forEach((authors) => {
+  authors.forEach((author) => {
     data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${authors.name}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${authors.lname}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${authors.age}</td>
-                    <td class="px-4 py-4 font-medium text-black dark:text-white">${authors.country}</td>
-                    <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${authors.email}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.lname}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.age}</td>
+                    <td class="px-4 py-4 font-medium text-black dark:text-white">${author.country}</td>
+                    <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
 
                 </tr>`;
   });
   tbody.innerHTML = data;
-  authorsnumber();
 }
 
-const books = [];
-const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5);
-books.push(book1);
+
+
+
+/////////////////////////////  books  ///////////////////////////////
+var bookCount = 1;
+showbook();
+booksnumber();
+
 function submitbook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("authors-select").value;
@@ -84,7 +84,6 @@ function submitbook() {
   books.push(book1);
   bookCount++;
   showbook();
-  
 }
 
 function showbook() {
@@ -119,19 +118,18 @@ function showbook() {
                                     </tr>`;
   });
   tbody.innerHTML = data;
-  booksnumber();
 }
+
+
+
 
 function booksnumber() {
+  let b_number = bookCount;
   const booksid = document.getElementById("b-number");
-  booksid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${bookCount}</h4>`;
+  booksid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${b_number}</h4>`;
 }
 
-function authorsnumber() {
-  const authorsid = document.getElementById("a-number");
-  authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${authrsCount}</h4>`;
-}
-
+function getAuthors() {
 const authorSelect = document.getElementById("authors-select");
 authors.forEach((authors) => {
   const option = document.createElement("option");
@@ -139,6 +137,8 @@ authors.forEach((authors) => {
   option.textContent = authors.name;
   authorSelect.appendChild(option);
 });
+}
+
 
 function borrowBook(id) {
   let i = id - 1;
@@ -151,3 +151,4 @@ function returnBook(id) {
   books[i].itavailable = true;
   showbook();
 }
+

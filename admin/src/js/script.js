@@ -18,12 +18,12 @@ window.onclick = function (event) {
 var addComplaintForm = document.getElementById("add-complaint-form");
 var openAddComplaintFormBtn = document.getElementById("open-add-complaint-form-btn");
 var closeAddComplaintFormBtn = document.getElementById("close-add-complaint-form-btn");
-openAddComplaintFormBtn.onclick = function () {
-  addComplaintForm.style.display = "block";
-};
-closeAddComplaintFormBtn.onclick = function () {
-  addComplaintForm.style.display = "none";
-};
+// openAddComplaintFormBtn.onclick = function () {
+//   addComplaintForm.style.display = "block";
+// };
+// closeAddComplaintFormBtn.onclick = function () {
+//   addComplaintForm.style.display = "none";
+// };
 window.onclick = function (event) {
   if (event.target == addComplaintForm) {
     addComplaintForm.style.display = "none";
