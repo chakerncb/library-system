@@ -24,24 +24,6 @@ class book {
   getSummary() {
     return `${this.title} was written by ${this.author} and has a rating of ${this.rating}`;
   }
-
-  borrowBook() {
-    if (this.itavailable) {
-      this.itavailable = false;
-      return `${this.title} is now borrowed`;
-    } else {
-      return `${this.title} is not available`;
-    }
-  }
-
-  returnBook() {
-    if (this.itavailable) {
-      return `${this.title} is already available`;
-    } else {
-      this.itavailable = true;
-      return `${this.title} is now returned`;
-    }
-  }
 }
 
 const authors = [];
@@ -84,6 +66,8 @@ function showauthor() {
 }
 
 const books = [];
+const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5);
+books.push(book1);
 
 function submitbook() {
   const title = document.getElementById("title").value;
@@ -100,7 +84,9 @@ function submitbook() {
 function showbook() {
   let tbody = document.getElementById("booksTable");
   let data = "";
+  let i = 0;
   books.forEach((book) => {
+    i++;
     data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.title}</td>
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.author}</td>
@@ -120,6 +106,11 @@ function showbook() {
                                                 </p>
                                             </td>`;
     }
+    data += `<td class="px-4 py-4 font-medium text-black dark:text-white">
+                                            <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="borrowBook(${i})">Borrow</button>
+                                            <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="returnBook(${i})">Return</button>
+                                        </td>
+                                    </tr>`;
   });
   tbody.innerHTML = data;
 }
@@ -131,3 +122,16 @@ authors.forEach((authors) => {
   option.textContent = authors.name;
   authorSelect.appendChild(option);
 });
+
+function borrowBook(id) {
+    let i = id-1; 
+  books[i].itavailable = false;
+  showbook();
+}
+
+function returnBook(id) {
+    let i = id-1;
+  books[i].itavailable = true;
+  showbook();
+}
+
