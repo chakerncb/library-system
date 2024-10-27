@@ -16,6 +16,10 @@ class book {
     this.rating = rating;
     this.itavailable = true;
   }
+
+  getSummary() {
+    return `${this.title} was written by ${this.author} and it is available for ${this.price} dinars with a rating of ${this.rating} stars.`;
+  }
 }
 
 let authors = [];
@@ -84,6 +88,7 @@ function submitbook() {
   books.push(book1);
   bookCount++;
   showbook();
+  Postnewbook();
 }
 
 function showbook() {
@@ -117,8 +122,32 @@ function showbook() {
                                         </td>
                                     </tr>`;
   });
+
   tbody.innerHTML = data;
 }
+
+function Postnewbook() {
+  let card = document.getElementById("booksCard");
+  let data1 = "";
+  books.forEach((book) => {
+    data1 += `            
+    <div class="card1 phone-card rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+            <h1 class="text-title-md font-bold text-black dark:text-white">${book.title}</h1>
+            <hr>
+            <br>
+            <p class="text-title" >${book.getSummary()}</p>
+            <br>
+            <hr>
+            <div class="flex" >
+             <p class="text-title" >${book.price}</p> 
+             <br>            
+             <p class="text-title" >${book.rating}</p>
+            </div>
+            </div>`;
+  });
+     card.innerHTML = data1;
+}
+
 
 
 

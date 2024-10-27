@@ -17,6 +17,10 @@ image, text, .jvm-zoomin, .jvm-zoomout {
        user-select: none;
 }
 
+.card1 {
+  max-width: 50%;
+}
+
 .jvm-container {
   -ms-touch-action: none;
       touch-action: none;
