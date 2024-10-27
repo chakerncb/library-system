@@ -17,6 +17,10 @@ image, text, .jvm-zoomin, .jvm-zoomout {
        user-select: none;
 }
 
+textarea {
+  resize: none;
+}
+
 #booksCard {
   margin-top: 50px;
   height: auto;
@@ -31,6 +35,19 @@ image, text, .jvm-zoomin, .jvm-zoomout {
   max-width: 23%;
   min-height: 350px;
   box-sizing: border-box; 
+}
+
+.card1 .price{
+  color: #5a6bce;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card1 .rating {
+  color: #e7e751;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 60%;
 }
 
 .main-img {
