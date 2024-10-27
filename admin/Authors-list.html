@@ -674,14 +674,6 @@
         <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white">
           EMAIL
         </th>
-        <th>
-          <button onclick="showauthor()">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20px" height="20px" viewBox="0 0 24 24">
-              <path
-                d="M1,12A11,11,0,0,1,17.882,2.7l1.411-1.41A1,1,0,0,1,21,2V6a1,1,0,0,1-1,1H16a1,1,0,0,1-.707-1.707l1.128-1.128A8.994,8.994,0,0,0,3,12a1,1,0,0,1-2,0Zm21-1a1,1,0,0,0-1,1,9.01,9.01,0,0,1-9,9,8.9,8.9,0,0,1-4.42-1.166l1.127-1.127A1,1,0,0,0,8,17H4a1,1,0,0,0-1,1v4a1,1,0,0,0,.617.924A.987.987,0,0,0,4,23a1,1,0,0,0,.707-.293L6.118,21.3A10.891,10.891,0,0,0,12,23,11.013,11.013,0,0,0,23,12,1,1,0,0,0,22,11Z" />
-            </svg>
-          </button>
-        </th>
       </tr>
     </thead>
     <tbody id="authorsTable">
@@ -779,24 +771,29 @@
                     />
                 </div>
         </div>
+        <div id="errorfield" >
+
+        </div>
       </div>
       <div class="flex justify-end p-6.5">
         <button
           class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-          onclick="submitauthor()"
+          onclick="checkauthor()"
           >
           Add
         </button>
         </div>
     </div>
   </div>
-        </main>
-        <!-- ===== Main Content End ===== -->
-      </div>
-      <!-- ===== Content Area End ===== -->
-    </div>
-    <!-- ===== Page Wrapper End ===== -->
-  <script defer src="bundle.js"></script></body>
-  <script src="src/js/script.js" ></script>
-  <script src="/assets/js/script.js" ></script>
+</main>
+<script>
+          document.addEventListener('DOMContentLoaded', (event) => {
+      showauthor();
+    });
+</script>
+<script defer src="bundle.js"></script></body>
+<script src="src/js/script.js" ></script>
+<script src="/assets/js/script.js" ></script>
+     </body>
+
 </html>

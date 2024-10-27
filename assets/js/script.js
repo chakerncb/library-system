@@ -9,30 +9,35 @@ class author {
 }
 
 class book {
-  constructor(title, author, price, rating) {
+  constructor(title, author, price, rating , description) {
     this.title = title;
     this.author = author;
     this.price = price;
     this.rating = rating;
+    this.description = description;
     this.itavailable = true;
   }
 
   getSummary() {
-    return `${this.title} was written by ${this.author} and it is available for ${this.price} dinars with a rating of ${this.rating} stars.`;
+    return `${this.title} was written by ${this.author} and he speaks about ${this.description}`;
   }
 }
 
 let authors = [];
 const books = [];
-const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5);
-books.push(book1);
-/////////////////////////////  authors  ///////////////////////////////
-let authrsCount = 1;
+const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5 , "The Alchemist follows the journey of an Andalusian shepherd");
+const book2 = new book("The Da Vinci Code", "Dan Brown", 15, 4 , "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
+const book3 = new book("The Great Gatsby", "F. Scott Fitzgerald", 12, 3 , "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald");
+const book4 = new book("The Catcher in the Rye", "J.D. Salinger", 13, 4 , "The Catcher in the Rye is a novel by J. D. Salinger");
+const book5 = new book("The Alchemist", "Paulo Coelho", 10, 5 , "The Alchemist follows the journey of an Andalusian shepherd");
+const book6 = new book("The Da Vinci Code", "Dan Brown", 15, 4 , "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
+books.push(book1 , book2 , book3 , book4 , book5 , book6);
 
-const author2 = new author("chaker", "necibi", "chaker@gmail.com", 19, "algeria");
-authors.push(author2);
-showauthor();
-authorsnumber();
+
+/////////////////////////////  authors  ///////////////////////////////
+const author2 = new author("chaker", "chaker", "chaker@gmail.com", 19, "algeria");
+const author3 = new author("ali", "ali", "ali@gmail.com" , 20, "algeria");
+authors.push(author2 , author3);
 
 function authorsnumber() {
   let a_Count = authors.length;
@@ -40,16 +45,33 @@ function authorsnumber() {
   authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${a_Count}</h4>`;
 }
 
-function submitauthor() {
+function checkauthor() {
   const name = document.getElementById("Fname").value;
   const lname = document.getElementById("Lname").value;
   const email = document.getElementById("email").value;
   const age = document.getElementById("age").value;
   const country = document.getElementById("country").value;
+  const error = document.getElementById("errorfield");
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
+
+  if (name === "" || lname === "" || email === "" || age === ""  || country === "") {
+    error.innerHTML = `<center><p class="error-msg"><b>Please fill all the fields</b></p></center>`;
+  }
+  else if (!email.match(emailRegex)) {
+    error.innerHTML = `<center><p class="error-msg"><b>Email is not valid</b></p></center>`;
+  }
+  else if (age < 0 || age > 100 || isNaN(age)) {
+    error.innerHTML = `<center><p class="error-msg"><b>Age must be between 0 and 100</b></p></center>`;
+  }
+  else{
+    submitauthor(name, lname, email, age, country);
+  }
+}
+
+function submitauthor(name, lname, email, age, country) {
   const author1 = new author(name, lname, email, age, country);
   authors.push(author1);
-  authrsCount++;
   showauthor();
 }
 
@@ -74,19 +96,36 @@ function showauthor() {
 
 
 /////////////////////////////  books  ///////////////////////////////
-var bookCount = 1;
-showbook();
-booksnumber();
-
-function submitbook() {
+function checkbook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("authors-select").value;
   const price = document.getElementById("price").value;
   const rating = document.getElementById("rating").value;
+  const description = document.getElementById("description").value;
+  const error = document.getElementById("errorfield");
 
-  const book1 = new book(title, author, price, rating);
+  if (title === "" || author === "" || price === "" || rating === "" || description === "") {
+    error.innerHTML = `<center><p class="error-msg"><b>Please fill all the fields</b></p></center>`;
+  }
+  else if (price < 0 || isNaN(price)) {
+    error.innerHTML = `<center><p class="error-msg"><b>Price must be a positive number</b></p></center>`;
+  }
+  else if (rating < 0 || rating > 5 || isNaN(rating)) {
+    error.innerHTML = `<center><p class="error-msg"><b>Rating must be between 0 and 5</b></p></center>`;
+  }
+  else if (description > 10) {
+    error.innerHTML = `<center><p class="error-msg"><b>Description must be less than 10 characters</b></p></center>`;
+  }
+  else{
+    submitbook(title, author, price, rating , description);
+  }
+  
+}
+
+
+function submitbook(title, author, price, rating , description) {
+  const book1 = new book(title, author, price, rating , description);
   books.push(book1);
-  bookCount++;
   showbook();
   Postnewbook();
 }
@@ -102,7 +141,7 @@ function showbook() {
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.author}</td>
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.price}</td>
                     <td class="px-4 py-4 font-medium text-black dark:text-white">${book.rating}</td>
-                                `;
+                    <td class="px-4 py-4 font-medium text-black dark:text-white">${book.description}</td>`;
     if (book.itavailable) {
       data += `<td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                                                 <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">
@@ -143,7 +182,7 @@ function Postnewbook() {
              <br>            
              <p class="text-title" >${book.rating}</p>
             </div>
-            </div>`;
+        </div>`;
   });
      card.innerHTML = data1;
 }
@@ -153,7 +192,7 @@ function Postnewbook() {
 
 
 function booksnumber() {
-  let b_number = bookCount;
+  let b_number = books.length;
   const booksid = document.getElementById("b-number");
   booksid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${b_number}</h4>`;
 }
