@@ -135,6 +135,34 @@ function showauthor() {
   tbody.innerHTML = data;
 }
 
+function SearchAuthor() {
+  const search = document.getElementById("search").value;
+  const tbody = document.getElementById("authorsTable");
+
+  let data = "";
+  authors.forEach((author) => {
+    if(author.name === search || author.lname === search){
+      data +=`
+      <tr class="bg-gray-2 text-left dark:bg-meta-4" >
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.lname}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.age}</td>
+                    <td class="px-4 py-4 font-medium text-black dark:text-white">${author.country}</td>
+                    <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
+                    </tr>`;
+    }
+    else {
+      data +='<td class="error-msg">User Unvailble</td>';
+    }
+
+  });
+  tbody.innerHTML = data;
+  if(search === ""){
+      showauthor();
+  }
+}
+
+
 /////////////////////////////  books  ///////////////////////////////
 function CheckAndSubmitBook() {
   const title = document.getElementById("title").value;
@@ -263,3 +291,48 @@ function returnBook(id) {
   books[i].itavailable = true;
   showbook();
 }
+
+// function SearchBook(){
+//    const search = document.getElementById("search").value;
+//    const tbody = document.getElementById("authorsTable");
+
+//    let data = "";
+//    books.forEach((book) => {
+//      if(book.title === search){
+//        data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.title}</td>
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.author}</td>
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.price}</td>
+//                     <td class="px-4 py-4 font-medium text-black dark:text-white">${book.rating}</td>
+//                     <td class="px-4 py-4 font-medium text-black dark:text-white">${book.description}</td>`;
+//     if (book.itavailable) {
+//       data += `<td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+//                                                 <p class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success">
+//                                                 Available
+//                                                 </p>
+//                                             </td>`;
+//     } else {
+//       data += `<td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+//                                                 <p class="inline-flex rounded-full bg-warning bg-opacity-10 px-3 py-1 text-sm font-medium text-warning">
+//                                                     Not Available
+//                                                 </p>
+//                                             </td>`;
+//     }
+//     data += `<td class="px-4 py-4 font-medium text-black dark:text-white">
+//                                             <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="borrowBook(${i})">Borrow</button>
+//                                             <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="returnBook(${i})">Return</button>
+//                                         </td>
+//                                     </tr>
+//        `;
+//      }
+//      else {
+//       data +='<td class="error-msg">Book Unvailble</td>';
+//      }
+ 
+//    });
+//    tbody.innerHTML = data;
+//    if(search === ""){
+//        showbook();
+//    }
+
+// }
