@@ -86,7 +86,7 @@ function authorsnumber() {
   authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${a_Count}</h4>`;
 }
 
-function checkauthor() {
+function CheckAndSubmitAuthor() {
   const name = document.getElementById("Fname").value;
   const lname = document.getElementById("Lname").value;
   const email = document.getElementById("email").value;
@@ -108,15 +108,16 @@ function checkauthor() {
   } else if (age < 0 || age > 100 || isNaN(age)) {
     error.innerHTML = `<center><p class="error-msg"><b>Age must be between 0 and 100</b></p></center>`;
   } else {
-    submitauthor(name, lname, email, age, country);
+    const author1 = new author(name, lname, email, age, country);
+    authors.push(author1);
+    showauthor();
   }
 }
 
-function submitauthor(name, lname, email, age, country) {
-  const author1 = new author(name, lname, email, age, country);
-  authors.push(author1);
-  showauthor();
-}
+// function submitauthor(name, lname, email, age, country) {
+ 
+//   showauthor();
+// }
 
 function showauthor() {
   let tbody = document.getElementById("authorsTable");
@@ -135,7 +136,7 @@ function showauthor() {
 }
 
 /////////////////////////////  books  ///////////////////////////////
-function checkbook() {
+function CheckAndSubmitBook() {
   const title = document.getElementById("title").value;
   const author = document.getElementById("authors-select").value;
   const price = document.getElementById("price").value;
@@ -158,16 +159,16 @@ function checkbook() {
   } else if (description > 10) {
     error.innerHTML = `<center><p class="error-msg"><b>Description must be less than 10 characters</b></p></center>`;
   } else {
-    submitbook(title, author, price, rating, description);
+    const book1 = new book(title, author, price, rating, description);
+    books.push(book1);
+    showbook();
+    Postnewbook();
   }
 }
 
-function submitbook(title, author, price, rating, description) {
-  const book1 = new book(title, author, price, rating, description);
-  books.push(book1);
-  showbook();
-  Postnewbook();
-}
+// function submitbook(title, author, price, rating, description) {
+ 
+// }
 
 function showbook() {
   let tbody = document.getElementById("booksTable");
