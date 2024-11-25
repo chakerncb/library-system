@@ -1,13 +1,5 @@
 
-class author {
-  constructor(name, lname, email, age, country) {
-    this.name = name;
-    this.lname = lname;
-    this.email = email;
-    this.age = age;
-    this.country = country;
-  }
-}
+
 
 
 class book {
@@ -41,34 +33,7 @@ class book {
 // authors.push(author2, author3);
 
 
- function CheckAuthor() {
-
-  
-  const name = document.getElementById("Fname").value;
-  const lname = document.getElementById("Lname").value;
-  const email = document.getElementById("email").value;
-  const age = document.getElementById("age").value;
-  const country = document.getElementById("country").value;
-  const error = document.getElementById("errorfield");
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-  if ( name === "" || lname === "" || email === "" || age === "" || country === "") {
-    error.innerHTML = `<center><p class="error-msg"><b>Please fill all the fields</b></p></center>`;
-    return 1;
-  } 
-  else if (!email.match(emailRegex)) {
-    error.innerHTML = `<center><p class="error-msg"><b>Email is not valid</b></p></center>`;
-    return 1;
-  } 
-  else if (age < 0 || age > 100 || isNaN(age)) {
-    error.innerHTML = `<center><p class="error-msg"><b>Age must be between 0 and 100</b></p></center>`;
-    return 1;
-  } 
-  else {
-    error.innerHTML = "";
-    return 0;
-  }
-}
+ 
 
 
 // function showauthor() {
@@ -87,38 +52,7 @@ class book {
 //   tbody.innerHTML = data;
 // }
 
-function SearchAuthor() {
-  const search = document.getElementById("search").value;
-  const error = document.getElementById("error");
-  const tbody = document.getElementById("authorsTable");
-
-  let i = 0;
-  let data = "";
-  authors.forEach((author) => {
-    if(author.name === search || author.lname === search){
-      data +=`
-      <tr class="bg-gray-2 text-left dark:bg-meta-4" >
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.lname}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.age}</td>
-                    <td class="px-4 py-4 font-medium text-black dark:text-white">${author.country}</td>
-                    <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
-                    </tr>`;
-    i++;
-    }
-  });
-  if(i === 0) {
-    error.innerHTML ='<p class="error-msg">User Unvailble</p>';
-     data += '<td></td>';
-    
-  }
-  tbody.innerHTML = data;
-  if(search === ""){
-      showauthor();
-  }
-}
-
-
+  
 function authorsnumber() {
   let a_Count = authors.length;
   const authorsid = document.getElementById("a-number");

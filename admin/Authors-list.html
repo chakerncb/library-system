@@ -777,72 +777,7 @@
     </div>
   </div>
 </main>
-<script src="/admin/script.js" ></script>
-<script>
-
-document.getElementById('authorForm').addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const name = document.getElementById('Fname').value;
-  const lname = document.getElementById('Lname').value;
-  const email = document.getElementById('email').value;
-  const age = document.getElementById('age').value;
-  const country = document.getElementById('country').value;
-
-  if (CheckAuthor() === 0) {
-
-  const author1 = new author(name, lname, email, age, country);
-
-    try {
-      const response = await fetch('/authors' , {
-
-        method : 'POST',
-        headers : {
-          'Content-Type' : 'application/json'
-        },
-        body : JSON.stringify(author1)
-      });
-
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Error submitting author:', error);
-    }
-
-  }
-  else {
-    // document.getElementById('errorfield').innerHTML = 'Please fill all the fields';
-  }
-
-
-});
-
-document.addEventListener('submit', async () => {
-    const authorsTable = document.getElementById('authorsTable');
-
-    try {
-        const response = await fetch('/api/authors');
-        const authors = await response.json();
-
-        authorsTable.innerHTML = ''; // Clear existing rows
-        authors.forEach(author => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td class="px-4 py-4">${author.name}</td>
-                <td class="px-4 py-4">${author.lname}</td>
-                <td class="px-4 py-4">${author.age}</td>
-                <td class="px-4 py-4">${author.country}</td>
-                <td class="px-4 py-4">${author.email}</td>
-            `;
-            authorsTable.appendChild(row);
-        });
-    } catch (error) {
-        console.error('Error fetching authors:', error);
-    }
-    
-});
-</script>
-
+<script src="/admin/js/author.js" ></script>
 <script defer src="/admin/bundle.js"></script></body>
 <script src="/admin/src/js/script.js" ></script>
      </body>
