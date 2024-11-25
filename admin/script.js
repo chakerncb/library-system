@@ -1,3 +1,4 @@
+
 class author {
   constructor(name, lname, email, age, country) {
     this.name = name;
@@ -24,25 +25,25 @@ class book {
   }
 }
 
-let authors = [];
-const books = [];
 
 
-const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5, "The Alchemist follows the journey of an Andalusian shepherd");
-const book2 = new book( "The Da Vinci Code", "Dan Brown", 15, 4, "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
-const book3 = new book( "The Great Gatsby", "F. Scott Fitzgerald", 12, 3, "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald");
-const book4 = new book( "The Catcher in the Rye", "J.D. Salinger", 13, 4, "The Catcher in the Rye is a novel by J. D. Salinger");
-const book5 = new book( "The Alchemist", "Paulo Coelho", 10, 5, "The Alchemist follows the journey of an Andalusian shepherd");
-const book6 = new book( "The Da Vinci Code", "Dan Brown", 15, 4, "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
-books.push(book1, book2, book3, book4, book5, book6);
+// const book1 = new book("The Alchemist", "Paulo Coelho", 10, 5, "The Alchemist follows the journey of an Andalusian shepherd");
+// const book2 = new book( "The Da Vinci Code", "Dan Brown", 15, 4, "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
+// const book3 = new book( "The Great Gatsby", "F. Scott Fitzgerald", 12, 3, "The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald");
+// const book4 = new book( "The Catcher in the Rye", "J.D. Salinger", 13, 4, "The Catcher in the Rye is a novel by J. D. Salinger");
+// const book5 = new book( "The Alchemist", "Paulo Coelho", 10, 5, "The Alchemist follows the journey of an Andalusian shepherd");
+// const book6 = new book( "The Da Vinci Code", "Dan Brown", 15, 4, "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown");
+// books.push(book1, book2, book3, book4, book5, book6);
 
-/////////////////////////////  authors  ///////////////////////////////
-const author2 = new author( "chaker", "chaker", "chaker@gmail.com", 19, "algeria");
-const author3 = new author("ali", "ali", "ali@gmail.com", 20, "algeria");
-authors.push(author2, author3);
+// /////////////////////////////  authors  ///////////////////////////////
+// const author2 = new author( "chaker", "chaker", "chaker@gmail.com", 19, "algeria");
+// const author3 = new author("ali", "ali", "ali@gmail.com", 20, "algeria");
+// authors.push(author2, author3);
 
 
-function CheckAndSubmitAuthor() {
+ function CheckAuthor() {
+
+  
   const name = document.getElementById("Fname").value;
   const lname = document.getElementById("Lname").value;
   const email = document.getElementById("email").value;
@@ -53,36 +54,38 @@ function CheckAndSubmitAuthor() {
 
   if ( name === "" || lname === "" || email === "" || age === "" || country === "") {
     error.innerHTML = `<center><p class="error-msg"><b>Please fill all the fields</b></p></center>`;
+    return 1;
   } 
   else if (!email.match(emailRegex)) {
     error.innerHTML = `<center><p class="error-msg"><b>Email is not valid</b></p></center>`;
+    return 1;
   } 
   else if (age < 0 || age > 100 || isNaN(age)) {
     error.innerHTML = `<center><p class="error-msg"><b>Age must be between 0 and 100</b></p></center>`;
+    return 1;
   } 
   else {
-    const author1 = new author(name, lname, email, age, country);
-    authors.push(author1);
-    showauthor();
+    error.innerHTML = "";
+    return 0;
   }
 }
 
 
-function showauthor() {
-  let tbody = document.getElementById("authorsTable");
-  let data = "";
-  authors.forEach((author) => {
-    data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.lname}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.age}</td>
-                    <td class="px-4 py-4 font-medium text-black dark:text-white">${author.country}</td>
-                    <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
+// function showauthor() {
+//   let tbody = document.getElementById("authorsTable");
+//   let data = "";
+//   authors.forEach((author) => {
+//     data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.lname}</td>
+//                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.age}</td>
+//                     <td class="px-4 py-4 font-medium text-black dark:text-white">${author.country}</td>
+//                     <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
 
-                </tr>`;
-  });
-  tbody.innerHTML = data;
-}
+//                 </tr>`;
+//   });
+//   tbody.innerHTML = data;
+// }
 
 function SearchAuthor() {
   const search = document.getElementById("search").value;
@@ -148,6 +151,7 @@ function CheckAndSubmitBook() {
       const book1 = new book(title, author, price, rating, description);
       books.push(book1);
       showbook();
+      Postnewbook();
   }
 }
 
@@ -216,6 +220,7 @@ function Postnewbook() {
               </p> 
             </div>
         </div>`;
+        
   });
   card.innerHTML = data1;
 }
