@@ -7,7 +7,25 @@ app.use(express.json());
 app.use('/admin', express.static(__dirname + '/admin')); // Add this line
 
 const authors = [];
+ let author = {
+    name: 'chaker',
+    lname: 'necibi',
+    email: 'chaker@gmail.com',
+    age: 25,
+    country: 'USA'
+}
+authors.push(author);
 const books = [];
+let book = {
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    price: 10,
+    rating: 4.5,
+    description: 'The story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted "gin was the national drink',
+    itavailable: true
+}
+books.push(book);
+
 
 app.get('/',(req,res) => {
     res.sendFile(__dirname + '/index.html');
@@ -29,6 +47,8 @@ app.post('/authors', (req,res) => {
     authors.push(author)
     res.status(201).send('Author added!');
 })
+
+
 
 // book
 

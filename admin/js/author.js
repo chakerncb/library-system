@@ -151,3 +151,17 @@ document.getElementById('authorForm').addEventListener('submit', async (event) =
 }
   }
   
+
+  async function authorsnumber() {
+    try {
+      const response = await fetch('/api/authors');
+      const authors = await response.json();
+      const authorsid = document.getElementById("a-number");
+      authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${authors.length}</h4>`;
+    } catch (error) {
+      console.error('Error fetching authors:', error);
+    }
+    // let a_Count = authors.length;
+    // const authorsid = document.getElementById("a-number");
+    // authorsid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${a_Count}</h4>`;
+  }

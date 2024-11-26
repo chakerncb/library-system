@@ -442,7 +442,7 @@
                   </a>
                   <button
                     class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-                    id="open-form-btn" type="button">Add new
+                    id="open-form-btn" type="button" onclick="getAuthors()">Add new
                   </button>
                 </form>
               </div>
@@ -495,6 +495,7 @@
           <div class="form-content">
             <span class="close-btn" id="close-form-btn">&times;</span>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <form id="bookForm" >
               <div class="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                 <h3 class="font-medium text-black dark:text-white">
                   Add New book :
@@ -515,7 +516,7 @@
                   <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                     Author
                   </label>
-                  <select onclick="getAuthors()" class="flex flex-col gap-5.5 p-6.5" name="authors-select"
+                  <select class="flex flex-col gap-5.5 p-6.5" name="authors-select"
                     id="authors-select">
                     <option value="">Select author</option>
                   </select>
@@ -554,61 +555,18 @@
             </div>
             <div class="flex justify-end p-6.5">
               <button class="flex justify-center rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-                onclick="CheckAndSubmitBook()">
+                type="submit">
                 Add
               </button>
             </div>
+          </form>
           </div>
         </div>
       </main>
-      <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-          document.getElementById('authorForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const title = document.getElementById("title").value;
-            const author = document.getElementById("authors-select").value;
-            const price = document.getElementById("price").value;
-            const rating = document.getElementById("rating").value;
-            const description = document.getElementById("description").value;
-            const error = document.getElementById("errorfield");
 
-            if (title === "" || author === "" || price === "" || rating === "" || description === "") {
-              error.innerHTML = `<center><p class="error-msg"><b>Please fill all the fields</b></p></center>`;
-            }
-            else if (price < 0 || isNaN(price)) {
-              error.innerHTML = `<center><p class="error-msg"><b>Price must be a positive number</b></p></center>`;
-            }
-            else if (rating < 0 || rating > 5 || isNaN(rating)) {
-              error.innerHTML = `<center><p class="error-msg"><b>Rating must be between 0 and 5</b></p></center>`;
-            }
-            else if (description.length < 10) {
-              error.innerHTML = `<center><p class="error-msg"><b>Description must be more than 10 characters</b></p></center>`;
-            }
-            else {
-              const book1 = new book(title, author, price, rating, description);
-
-              try {
-                const response = await fetch('/books', {
-
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(book1)
-                });
-
-              } catch (error) {
-                console.error('Error submitting author:', error);
-              }
-            }
-          });
-
-        });
-      </script>
       <script defer src="/admin/bundle.js"></script>
-</body>
-<script src="/admin/src/js/script.js"></script>
-<script src="/admin/script.js"></script>
+      <script src="/admin/src/js/script.js"></script>
+      <script src="/admin/js/book.js"></script>
 </body>
 
 </html>
