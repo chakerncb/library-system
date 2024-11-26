@@ -30,6 +30,8 @@ document.getElementById('bookForm').addEventListener('submit', async (event) => 
 
     if (CheckBook() === 0) {
       const book1 = new book(title, author, price, rating, description);
+      document.getElementById('bookForm').reset();
+      alert('Book added!');
 
       try {
         const response = await fetch('/books', {

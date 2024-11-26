@@ -20,6 +20,8 @@ document.getElementById('authorForm').addEventListener('submit', async (event) =
     if (CheckAuthor() === 0) {
   
     const author1 = new author(name, lname, email, age, country);
+    document.getElementById('authorForm').reset();
+    alert('Author added!');
   
       try {
         const response = await fetch('/authors' , {
