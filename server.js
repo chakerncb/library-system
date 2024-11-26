@@ -34,13 +34,8 @@ app.get('/',(req,res) => {
 // author
 
 app.get('/authors',(req,res) => {
-    res.sendFile(__dirname + '/admin/Authors-list.html')
-    // res.json(authors);
+    res.status(200).sendFile(__dirname + '/admin/Authors-list.html')
 })
-
-app.get('/api/authors', (req, res) => {
-    res.json(authors);
-});
 
 app.post('/authors', (req,res) => {
     const author = req.body; 
@@ -48,17 +43,17 @@ app.post('/authors', (req,res) => {
     res.status(201).send('Author added!');
 })
 
+app.get('/api/authors', (req, res) => {
+    res.json(authors);
+});
+
 
 
 // book
 
 app.get('/books',(req,res) => {
-    res.sendFile(__dirname + '/admin/Books-list.html')
+    res.status(200).sendFile(__dirname + '/admin/Books-list.html')
     // res.json(books);
-})
-
-app.get('/api/books', (req, res) => {
-    res.json(books);
 })
 
 app.post('/books', (req,res) => {
@@ -67,8 +62,9 @@ app.post('/books', (req,res) => {
     res.status(201).send('Book added!');
 })
 
-
-
+app.get('/api/books', (req, res) => {
+    res.json(books);
+})
 
 
 

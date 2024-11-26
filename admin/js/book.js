@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-  document.getElementById('bookForm').addEventListener('submit', async (event) => {
+
+document.getElementById('bookForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     const title = document.getElementById("title").value;
     const author = document.getElementById("authors-select").value;
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
+
 
 
 function CheckBook() {
@@ -76,36 +78,6 @@ function CheckBook() {
       return 0;
   }
 }
-
-// document.addEventListener('submit', async () => {
-//   const booksTable = document.getElementById('booksTable');
-
-//   try {
-//     const response = await fetch('/api/books');
-//     const books = await response.json();
-
-//     booksTable.innerHTML = ''; // Clear existing rows
-//     books.forEach(book => {
-//       const row = document.createElement('tr');
-//       row.innerHTML = `
-//           <td class="px-4 py-4">${book.title}</td>
-//           <td class="px-4 py-4">${book.author}</td>
-//           <td class="px-4 py-4">${book.price}</td>
-//           <td class="px-4 py-4">${book.rating}</td>
-//           <td class="px-4 py-4">${book.description}</td>
-//           <td class="px-4 py-4">${book.itavailable}</td>
-//       `;
-//       booksTable.appendChild(row);
-//     });
-//   } catch (error) {
-//     console.error('Error fetching books:', error);
-//   }
-  
-// });
-
-
-
-
 
 
 
@@ -161,58 +133,6 @@ document.addEventListener('submit', async () => {
 
 
 
-async function Postnewbook() {
-  let card = document.getElementById("booksCard");
-  let data1 = "";
-
-  try {
-    const response = await fetch('/api/books');
-    const books = await response.json(); 
-    books.forEach((book) => {
-    data1 += `            
-    <div class="card1 phone-card rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
-            <div class="flex">
-            <h1 class="text-title-md font-bold text-black dark:text-white">${book.title}</h1>
-            </div>
-            <br>
-            <hr>
-            <br>
-            <p class="text-title" >${book.getSummary()}</p>
-            <br>
-            <hr>
-            <br>
-            <div class="flex" >
-             <p class="price text-title font-bold text-black">DZ${
-               book.price
-             }</p>
-              <p class="flex rating text-title font-bold text-black">${book.rating}'
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-               </svg>
-              </p> 
-            </div>
-        </div>`;
-        
-  });
-  card.innerHTML = data1;
-}
-catch (error) {
-  console.error('Error fetching books:', error);
-}
-}
-
-
-
-
-// function booksnumber() {
-//   let b_number = books.length;
-//   const booksid = document.getElementById("b-number");
-//   booksid.innerHTML = `<h4 class="text-title-md font-bold text-black dark:text-white">${b_number}</h4>`;
-// }
-
-
-
-
 async function getAuthors() {
   const authorSelect = document.getElementById("authors-select");
   try {
@@ -230,13 +150,18 @@ async function getAuthors() {
 }
 
 
-function SearchBook(){
+ async function SearchBook(){
    const search = document.getElementById("search").value;
    const error = document.getElementById("error");
    const tbody = document.getElementById("booksTable");
 
    let i = 0;
    let data = "";
+
+   try {
+       const response = await fetch('/api/books');
+       const books = await response.json();
+
    books.forEach((book) => {
      if(book.title === search){
        data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
@@ -266,15 +191,35 @@ function SearchBook(){
        `;
        i++;
      }
+     
    });
 
-   if(i === 0) {
+   if(i === 0 && search !== "") {
     error.innerHTML ='<p class="error-msg">Book Unvailble</p>';
      data += '<td></td>';
    }
    tbody.innerHTML = data;
    if(search === ""){
-       showbook();
+    error.innerHTML = "";
+    booksTable.innerHTML = ''; // Clear existing rows
+    books.forEach(book => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td class="px-4 py-4">${book.title}</td>
+          <td class="px-4 py-4">${book.author}</td>
+          <td class="px-4 py-4">${book.price}</td>
+          <td class="px-4 py-4">${book.rating}</td>
+          <td class="px-4 py-4">${book.description}</td>
+          <td class="px-4 py-4">${book.itavailable ? 'Available' : 'Not Available'}</td>
+          <td class="px-4 py-4">
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="borrowBook(${books.indexOf(book)})">Borrow</button>
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="returnBook(${books.indexOf(book)})">Return</button>
+          </td>
+      `;
+      booksTable.appendChild(row);
+    });
    }
-
+  } catch (error) {
+    console.error('Error fetching books:', error);
+  }
 }
