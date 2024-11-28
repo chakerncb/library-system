@@ -15,6 +15,7 @@ const authors = [];
     country: 'USA'
 }
 authors.push(author);
+
 const books = [];
 let book = {
     title: 'The Great Gatsby',
@@ -44,7 +45,8 @@ app.post('/authors', (req,res) => {
 })
 
 app.get('/api/authors', (req, res) => {
-    res.json(authors);
+    // res.json(authors);
+    res.send(authors);
 });
 
 
