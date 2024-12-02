@@ -284,7 +284,7 @@ textarea {
  *
 */
 
-@font-face {
+/* @font-face {
   font-family: "Satoshi";
   src: url(src/fonts/Satoshi-Light.woff2) format("woff2"),
     url(src/fonts/Satoshi-Light.woff) format("woff"),
@@ -382,7 +382,7 @@ textarea {
   font-weight: 900;
   font-display: swap;
   font-style: italic;
-}
+} */
 
 /*!***********************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/css/style.css (1) ***!

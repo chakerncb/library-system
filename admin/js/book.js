@@ -112,26 +112,7 @@ document.addEventListener('submit', async () => {
   }
 });
 
-// async function borrowBook(id) {
-//   let i = id;
-//   const form = document.getElementById('bookForm');
-//   try {
-//     const response = await fetch('/api/books');
-//     const books = await response.json();
-//     books[i].itavailable = false;
-//     form.submit();
-//   }
-//   catch (error) {
-//     console.error('Error fetching books:', error);
-//   }
-    
-// }
 
-// function returnBook(id) {
-//   let i = id;
-//   books[i].itavailable = true;
-//   showbook();
-// }
 
 
 
@@ -225,3 +206,5 @@ async function getAuthors() {
     console.error('Error fetching books:', error);
   }
 }
+
+

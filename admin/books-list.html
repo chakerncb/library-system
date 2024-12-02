@@ -25,8 +25,8 @@
       @click.outside="sidebarToggle = false">
       <!-- SIDEBAR HEADER -->
       <div class="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <a class="logo" href="dashboard.html">
-          <img src="src/images/logo/logo.svg" alt="Logo" />
+        <a class="logo" href="/">
+          <img src="/admin/src/images/logo/logo-dark.svg" alt="Logo" />
         </a>
 
         <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
@@ -318,7 +318,7 @@
                 </span>
 
                 <span class="h-12 w-12 rounded-full">
-                  <img style="border-radius: 50%;" src="src/images/user/chaker.jpg" alt="User" />
+                  <img style="border-radius: 50%;" src="/admin/src/images/user/chaker.jpg" alt="User" />
                 </span>
 
                 <svg :class="dropdownOpen && 'rotate-180'" class="hidden fill-current sm:block" width="12" height="8"
@@ -564,6 +564,11 @@
         </div>
       </main>
 
+      <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        SearchBook();
+       });
+      </script>
       <script defer src="/admin/bundle.js"></script>
       <script src="/admin/src/js/script.js"></script>
       <script src="/admin/js/book.js"></script>

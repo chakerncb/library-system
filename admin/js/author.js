@@ -114,7 +114,7 @@ document.getElementById('authorForm').addEventListener('submit', async (event) =
         const authors = await response.json();
 
     authors.forEach((author) => {
-      if(author.name === search || author.lname === search){
+      if(author.name === search || author.lname === search || author.country === search){
         data +=`
         <tr class="bg-gray-2 text-left dark:bg-meta-4" >
                       <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${author.name}</td>
@@ -124,6 +124,7 @@ document.getElementById('authorForm').addEventListener('submit', async (event) =
                       <td min-w-[220px] px-4 py-4 font-medium text-black dark:text-white >${author.email}</td>
                       </tr>`;
       i++;
+      error.innerHTML = '';
       }
     });
     if(i === 0 && search !== "") {
@@ -144,6 +145,8 @@ document.getElementById('authorForm').addEventListener('submit', async (event) =
                   <td class="px-4 py-4">${author.email}</td>
               `;
               authorsTable.appendChild(row);
+              error.innerHTML = '';
+
           });
     }
 
