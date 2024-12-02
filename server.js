@@ -68,7 +68,28 @@ app.get('/api/books', (req, res) => {
     res.json(books);
 })
 
+// Borrow and return books
 
+app.post('/books/borrow/:index', (req, res) => {
+    const { index } = req.params;
+    if (books[index]) {
+        books[index].itavailable = false;
+        res.status(200).send('Book borrowed!');
+    } else {
+        res.status(404).send('Book not found!');
+    }
+});
+
+app.post('/books/return/:index', (req, res) => {
+    const { index } = req.params;
+    
+    if (books[index]) {
+        books[index].itavailable = true;
+        res.status(200).send('Book returned!');
+    } else {
+        res.status(404).send('Book not found!');
+    }
+});
 
 // delete
 

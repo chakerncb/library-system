@@ -96,13 +96,13 @@ document.addEventListener('submit', async () => {
       row.innerHTML = `
           <td class="px-4 py-4">${book.title}</td>
           <td class="px-4 py-4">${book.author}</td>
-          <td class="px-4 py-4">${book.price}</td>
+          <td class="px-4 py-4">${book.price}DZD</td>
           <td class="px-4 py-4">${book.rating}</td>
           <td class="px-4 py-4">${book.description}</td>
           <td class="px-4 py-4">${book.itavailable ? 'Available' : 'Not Available'}</td>
           <td class="px-4 py-4">
-              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="borrowBook(${books.indexOf(book)})">Borrow</button>
-              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="returnBook(${books.indexOf(book)})">Return</button>
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary ${book.itavailable ? '' : 'disabled'}" onclick="borrowBook(${books.indexOf(book)})" ${book.itavailable ? '' : 'disabled'}>Borrow</button>
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary ${book.itavailable ? 'disabled' : ''}" onclick="returnBook(${books.indexOf(book)})" ${book.itavailable ? 'disabled' : ''}>Return</button>
           </td>
       `;
       booksTable.appendChild(row);
@@ -146,11 +146,11 @@ async function getAuthors() {
        const books = await response.json();
 
    books.forEach((book) => {
-     if(book.title === search){
+     if(book.title === search || book.author === search){
        data += `<tr class="bg-gray-2 text-left dark:bg-meta-4" >
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.title}</td>
                     <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.author}</td>
-                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.price}</td>
+                    <td class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11" >${book.price}DZD</td>
                     <td class="px-4 py-4 font-medium text-black dark:text-white">${book.rating}</td>
                     <td class="px-4 py-4 font-medium text-black dark:text-white">${book.description}</td>`;
     if (book.itavailable) {
@@ -195,8 +195,8 @@ async function getAuthors() {
           <td class="px-4 py-4">${book.description}</td>
           <td class="px-4 py-4">${book.itavailable ? 'Available' : 'Not Available'}</td>
           <td class="px-4 py-4">
-              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="borrowBook(${books.indexOf(book)})">Borrow</button>
-              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary" onclick="returnBook(${books.indexOf(book)})">Return</button>
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary ${book.itavailable ? '' : 'disabled'}" onclick="borrowBook(${books.indexOf(book)})" ${book.itavailable ? '' : 'disabled'}>Borrow</button>
+              <button class="inline-flex rounded-full bg-primary bg-opacity-10 px-3 py-1 text-sm font-medium text-primary ${book.itavailable ? 'disabled' : ''}" onclick="returnBook(${books.indexOf(book)})" ${book.itavailable ? 'disabled' : ''}>Return</button>
           </td>
       `;
       booksTable.appendChild(row);
@@ -205,6 +205,50 @@ async function getAuthors() {
   } catch (error) {
     console.error('Error fetching books:', error);
   }
+}
+
+async function borrowBook(index) {
+    try {
+        const response = await fetch(`/books/borrow/${index}`, {
+            method: 'POST'
+        });
+        if (response.ok) {
+            alert('Book borrowed!');
+            const borrowButton = document.querySelector(`button[onclick="borrowBook(${index})"]`);
+            const returnButton = document.querySelector(`button[onclick="returnBook(${index})"]`);
+            borrowButton.disabled = true;
+            returnButton.disabled = false;
+            borrowButton.classList.add('disabled');
+            returnButton.classList.remove('disabled');
+            SearchBook();
+        } else {
+            alert('Failed to borrow book.');
+        }
+    } catch (error) {
+        console.error('Error borrowing book:', error);
+    }
+}
+
+async function returnBook(index) {
+    try {
+        const response = await fetch(`/books/return/${index}`, {
+            method: 'POST'
+        });
+        if (response.ok) {
+            alert('Book returned!');
+            const borrowButton = document.querySelector(`button[onclick="borrowBook(${index})"]`);
+            const returnButton = document.querySelector(`button[onclick="returnBook(${index})"]`);
+            borrowButton.disabled = false;
+            returnButton.disabled = true;
+            borrowButton.classList.remove('disabled');
+            returnButton.classList.add('disabled');
+            SearchBook();
+        } else {
+            alert('Failed to return book.');
+        }
+    } catch (error) {
+        console.error('Error returning book:', error);
+    }
 }
 
 
